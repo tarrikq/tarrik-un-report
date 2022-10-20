@@ -3,3 +3,5 @@ UN Report Project
 We plotted life expectancy over time in both static and animated plots.
 We learned how to use the unix shell.
 We created a new git repo.
+
+Authors: Tarrik and Christina.
