@@ -7,5 +7,24 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+setwd('~/Desktop/tarrik-un-report')
 ```
 
+```{r packages, include=FALSE}
+library(tidyverse)
+library(here)
+library(knitr)
+```
+
+```{r exercise 1, include=FALSE}
+gapminder_data <- read_csv('~/Desktop/tarrik-un-report/data/gapminder_data.csv') %>%
+  filter(continent == 'Asia' & pop > 4e8)
+```
+
+```{r plot}
+ggplot(gapminder_data, aes(x= year, y= pop, color = country)) + 
+  geom_point() +
+  facet_wrap(vars(continent))
+```
+
+From the population data for Asia, we found that the outlier countries are India and China.
