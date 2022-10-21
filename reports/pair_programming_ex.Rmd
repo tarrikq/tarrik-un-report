@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(knitr)
+library(plotly)
 ```
 
 ```{r exercise 1, include=FALSE}
@@ -32,10 +33,11 @@ From the population data for Asia, we found that the outlier countries are India
 gapminder_data <- read_csv('../data/gapminder_data.csv') %>%
   filter(country != "India" & country != "China")
 
-ggplot(gapminder_data, aes(x= year, y= pop)) + 
+p1<- ggplot(gapminder_data, aes(x= year, y= pop)) + 
   geom_point() +
   facet_wrap(vars(continent))
 
+plotly(p1)
 
 ```
 
@@ -62,8 +64,9 @@ gapminder_asia <- gapminder_data %>%
   filter(continent == "Asia")
 
 
-ggplot(gapminder_asia, aes(x=year, y=lifeExp, color = country))+
+p1<-ggplot(gapminder_asia, aes(x=year, y=lifeExp, color = country))+
   geom_boxplot()
 
 
+ggplotly(p1)
 ```
