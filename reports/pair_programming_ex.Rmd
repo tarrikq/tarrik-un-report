@@ -7,7 +7,6 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-setwd('~/Desktop/tarrik-un-report')
 ```
 
 ```{r packages, include=FALSE}
@@ -28,3 +27,43 @@ ggplot(gapminder_data, aes(x= year, y= pop, color = country)) +
 ```
 
 From the population data for Asia, we found that the outlier countries are India and China.
+
+```{r excersize 4}
+gapminder_data <- read_csv('../data/gapminder_data.csv') %>%
+  filter(country != "India" & country != "China")
+
+ggplot(gapminder_data, aes(x= year, y= pop)) + 
+  geom_point() +
+  facet_wrap(vars(continent))
+
+
+```
+
+```{r excersize 5}
+maxlife_df <- gapminder_data %>%
+  filter(year == 1982) %>%
+  slice_max(lifeExp)
+
+```
+
+Highest life expectancy is Japan
+
+```{r excersize 8}
+gapminder_data %>%
+  group_by(year) %>%
+  slice_max(lifeExp) %>%
+  kable()
+
+
+```
+
+```{r excersize 9}
+gapminder_asia <- gapminder_data %>%
+  filter(continent == "Asia")
+
+
+ggplot(gapminder_asia, aes(x=year, y=lifeExp, color = country))+
+  geom_boxplot()
+
+
+```
